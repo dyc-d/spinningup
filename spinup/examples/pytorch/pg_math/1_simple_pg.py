@@ -5,7 +5,11 @@ from torch.optim import Adam
 import numpy as np
 import gym
 from gym.spaces import Discrete, Box
-
+# 这个函数的主要作用是用来构建一个前馈神经网络，其中输入参数 sizes 表示每层神经网络的大小，例如 [2, 3, 1] 表示输入层有2个神经元，隐藏层有3个神经元，输出层有1个神经元。
+# activation 和 output_activation 分别表示隐层和输出层的激活函数，如果没有指定则默认为 nn.Tanh 和 nn.Identity。
+# 在函数体中，我们首先定义了一个空的列表 layers 用于存储神经网络的每一层。然后通过一个循环来遍历每一层神经网络，根据神经网络层数的不同选择相应的激活函数 act。在每一层中，我们添加了一个线性层 nn.Linear(sizes[j], sizes[j+1])，其作用是对输入进行线性变换并输出到下一层，
+# 然后接上激活函数 act()，将输出值进行非线性变换。
+# 最后，我们将这些层按照顺序组合成一个 nn.Sequential 模型，该模型按照添加的顺序执行每一层，并将输出传递到下一层，最终得到模型的输出。该模型可以用于各种机器学习任务，如分类、回归等。
 def mlp(sizes, activation=nn.Tanh, output_activation=nn.Identity):
     # Build a feedforward neural network.
     layers = []
