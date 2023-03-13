@@ -66,7 +66,7 @@ def train(env_name='CartPole-v0', hidden_sizes=[32], lr=1e-2,
     # make optimizer
     optimizer = Adam(logits_net.parameters(), lr=lr)
 
-    # for training policy
+    # for training policy   一个epoch里有N轨迹，每条轨迹是基于策略pai实现的完整一局游戏，N即为batch大小，更具一个batch的均值进行更新策略梯度
     def train_one_epoch():
         # make some empty lists for logging.
         batch_obs = []          # for observations
