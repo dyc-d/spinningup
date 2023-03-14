@@ -17,6 +17,7 @@ def mlp(sizes, activation=nn.Tanh, output_activation=nn.Identity):
 def reward_to_go(rews):
     n = len(rews)
     rtgs = np.zeros_like(rews)
+    # reversed(range(n))反向迭代器，list = [1,2,3,4]  reverse后list[1] = 4 ;list[2] = 3
     for i in reversed(range(n)):
         rtgs[i] = rews[i] + (rtgs[i+1] if i+1 < n else 0)
     return rtgs
