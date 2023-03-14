@@ -108,7 +108,7 @@ def train(env_name='CartPole-v0', hidden_sizes=[32], lr=1e-2,
                 batch_lens.append(ep_len)
 
                 # the weight for each logprob(a|s) is R(tau)
-                # 这里的 * 不是乘法而是复制ep_len个
+                # 这里的 * 不是乘法而是复制ep_len个,ep_ret = ep_rews.sum()
                 batch_weights += [ep_ret] * ep_len
 
                 # reset episode-specific variables
